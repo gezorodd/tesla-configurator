@@ -1,0 +1,4 @@
+<button [id]="'step' + step.stepNumber" *ngFor="let step of steps" [routerLink]="[step.routeLink]"
+        [disabled]="!step.canActivate(settings)">
+  Step {{step.stepNumber}}
+</button>

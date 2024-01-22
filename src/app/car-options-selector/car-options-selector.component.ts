@@ -1,0 +1,60 @@
+import {Component, OnInit} from '@angular/core';
+import {AsyncPipe, CurrencyPipe, NgForOf, NgIf} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CarSettingsService} from "../car-settings/car-settings.service";
+import {CarSettings} from "../car-settings/car-settings.model";
+import {map, Observable, tap} from "rxjs";
+import {CarConfig} from "../car-catalogue/car-catalogue.model";
+import {CarCatalogueService} from "../car-catalogue/car-catalogue.service";
+
+@Component({
+  selector: 'app-car-options-selector',
+  standalone: true,
+  imports: [
+    AsyncPipe,
+    NgForOf,
+    ReactiveFormsModule,
+    FormsModule,
+    NgIf,
+    CurrencyPipe
+  ],
+  templateUrl: './car-options-selector.component.html',
+  styleUrl: './car-options-selector.component.scss'
+})
+export class CarOptionsSelectorComponent implements OnInit {
+
+  readonly settings: CarSettings;
+  carConfigs$?: Observable<CarConfig[]>;
+  includeTowHitch$?: Observable<boolean>;
+  includeYoke$?: Observable<boolean>;
+
+  constructor(carSettingsService: CarSettingsService, private carCatalogueService: CarCatalogueService) {
+    this.settings = carSettingsService.settings;
+  }
+
+  ngOnInit(): void {
+    const model = this.settings.model!;
+    const carOptions$ = this.carCatalogueService.getCarOptions(model);
+
+    this.carConfigs$ = carOptions$
+      .pipe(map(carOptions => carOptions.configs));
+    this.includeTowHitch$ = carOptions$
+      .pipe(
+        map(carOptions => carOptions.towHitch),
+        tap(includeTowHitch => {
+          if (!includeTowHitch) {
+            this.settings.towHitchChosen = false;
+          }
+        })
+      );
+    this.includeYoke$ = carOptions$
+      .pipe(
+        map(carOptions => carOptions.yoke),
+        tap(includeYoke => {
+          if (!includeYoke) {
+            this.settings.yokeChosen = false;
+          }
+        })
+      );
+  }
+}
