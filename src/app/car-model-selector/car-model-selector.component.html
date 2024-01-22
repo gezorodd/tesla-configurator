@@ -7,6 +7,7 @@
 <ng-container *ngIf="settings.model">
   <label for="colorSelect">Color: </label>
   <select id="colorSelect" [(ngModel)]="settings.color">
+    <option [ngValue]="undefined">Choose...</option>
     <option *ngFor="let carColor of settings.model?.colors" [ngValue]="carColor">{{carColor.description}}</option>
   </select>
 </ng-container>

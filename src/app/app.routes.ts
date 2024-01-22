@@ -18,7 +18,7 @@ export const routes: Routes = [
   {
     path: 'options',
     component: CarOptionsSelectorComponent,
-    canActivate: [() => inject(CarSettingsService).settings.hasModelSelected() || inject(Router).parseUrl('models')]
+    canActivate: [() => inject(CarSettingsService).settings.hasModelAndColorSelected() || inject(Router).parseUrl('models')]
   },
   {
     path: 'summary',
@@ -26,7 +26,7 @@ export const routes: Routes = [
     canActivate: [() => {
       const settings = inject(CarSettingsService).settings;
       const router = inject(Router);
-      if (!settings.hasModelSelected()) {
+      if (!settings.hasModelAndColorSelected()) {
         return router.parseUrl('models');
       }
       if (!settings.hasConfigSelected()) {

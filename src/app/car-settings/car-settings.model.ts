@@ -20,12 +20,12 @@ export class CarSettings {
 
   set model(value: CarModel | undefined) {
     this._model = value;
-    this.color = this._model?.colors[0];
+    this.color = undefined;
     this.config = undefined;
   }
 
-  hasModelSelected(): boolean {
-    return !!this._model;
+  hasModelAndColorSelected(): boolean {
+    return !!this._model && !!this.color;
   }
 
   hasConfigSelected(): boolean {

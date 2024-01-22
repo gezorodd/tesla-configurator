@@ -1,3 +1,3 @@
 <app-step-selector [settings]="settings"></app-step-selector>
 <router-outlet></router-outlet>
-<app-car-viewer *ngIf="settings.hasModelSelected()" [settings]="settings"></app-car-viewer>
+<app-car-viewer *ngIf="settings.hasModelAndColorSelected()" [settings]="settings"></app-car-viewer>

@@ -15,7 +15,7 @@ export class StepSelectorComponent {
 
   readonly steps: Step[] = [
     new Step(1, 'models', () => true),
-    new Step(2, 'options', settings => settings.hasModelSelected()),
+    new Step(2, 'options', settings => settings.hasModelAndColorSelected()),
     new Step(3, 'summary', settings => settings.hasConfigSelected()),
   ];
 
