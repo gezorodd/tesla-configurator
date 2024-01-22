@@ -1,5 +1,5 @@
 import {Directive, HostBinding, Input, OnChanges} from '@angular/core';
-import {CarColor, CarModel} from "../car-catalogue/car-catalogue.model";
+import {CarColor, CarModel} from "../car-catalog/car-catalog.model";
 
 @Directive({
   selector: '[appCarImageSrc]',

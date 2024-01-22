@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {CarCatalogueService} from "../car-catalogue/car-catalogue.service";
+import {CarCatalogService} from "../car-catalog/car-catalog.service";
 import {Observable} from "rxjs";
-import {CarModel} from "../car-catalogue/car-catalogue.model";
+import {CarModel} from "../car-catalog/car-catalog.model";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {CarSettings} from "../car-settings/car-settings.model";
 import {CarSettingsService} from "../car-settings/car-settings.service";
@@ -24,8 +24,8 @@ export class CarModelSelectorComponent {
   readonly settings: CarSettings;
   readonly carModels$: Observable<CarModel[]>;
 
-  constructor(carSettingsService: CarSettingsService, carCatalogueService: CarCatalogueService) {
+  constructor(carSettingsService: CarSettingsService, carCatalogService: CarCatalogService) {
     this.settings = carSettingsService.settings;
-    this.carModels$ = carCatalogueService.getAllCarModels();
+    this.carModels$ = carCatalogService.getAllCarModels();
   }
 }

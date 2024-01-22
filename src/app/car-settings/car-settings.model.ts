@@ -1,4 +1,4 @@
-import {CarColor, CarConfig, CarModel} from "../car-catalogue/car-catalogue.model";
+import {CarColor, CarConfig, CarModel} from "../car-catalog/car-catalog.model";
 
 export class CarSettings {
   static readonly OPTION_COST = 1000;
