@@ -17,7 +17,7 @@ export class CarCatalogueService {
 
   getAllCarModels(): Observable<CarModel[]> {
     if (!this.carModels$) {
-      this.carModels$ = this.http.get<CarModel[]>('/models')
+      this.carModels$ = this.http.get<CarModel[]>('models')
         .pipe(shareReplay());
     }
     return this.carModels$;
@@ -26,7 +26,7 @@ export class CarCatalogueService {
   getCarOptions(model: CarModel): Observable<CarOptions> {
     let carOptions$ = this.carOptionsByModelCode.get(model.code);
     if (!carOptions$) {
-      carOptions$ = this.http.get<CarOptions>(`/options/${model.code}`)
+      carOptions$ = this.http.get<CarOptions>(`options/${model.code}`)
         .pipe(shareReplay());
       this.carOptionsByModelCode.set(model.code, carOptions$);
     }
