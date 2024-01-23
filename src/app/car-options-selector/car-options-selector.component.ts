@@ -6,6 +6,7 @@ import {CarSettings} from "../car-settings/car-settings.model";
 import {map, Observable, tap} from "rxjs";
 import {CarConfig} from "../car-catalog/car-catalog.model";
 import {CarCatalogService} from "../car-catalog/car-catalog.service";
+import {CarConfigSpecPipe} from "./car-config-spec.pipe";
 
 @Component({
   selector: 'app-car-options-selector',
@@ -16,7 +17,8 @@ import {CarCatalogService} from "../car-catalog/car-catalog.service";
     ReactiveFormsModule,
     FormsModule,
     NgIf,
-    CurrencyPipe
+    CurrencyPipe,
+    CarConfigSpecPipe
   ],
   templateUrl: './car-options-selector.component.html',
   styleUrl: './car-options-selector.component.scss'

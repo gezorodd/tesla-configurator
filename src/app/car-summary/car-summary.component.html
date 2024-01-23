@@ -1,13 +1,17 @@
 <h1>Step 3: Summary</h1>
 <h2>Your Tesla {{settings.model?.description}}</h2>
 <div class="grid">
-  <div>
-    <b>{{settings.config?.description}}</b>
-    <div>Range: {{settings.config?.range}} miles - Max speed: {{settings.config?.speed}}</div>
-  </div>
-  <span>{{settings.config?.price | currency: 'USD'}}</span>
-  <b>{{settings.color?.description}} Color</b>
-  <span>{{settings.color?.price | currency: 'USD'}}</span>
+  <ng-container *ngIf="settings.config as config">
+    <div>
+      <b>{{config.description}}</b>
+      <div>{{config | carConfigSpec}}</div>
+    </div>
+    <span>{{settings.config?.price | currency: 'USD'}}</span>
+  </ng-container>
+  <ng-container *ngIf="settings.color as color">
+    <b>{{color.description}} Color</b>
+    <span>{{color.price | currency: 'USD'}}</span>
+  </ng-container>
   <ng-container *ngIf="settings.towHitchChosen">
     <b>Tow Hitch Package</b>
     <span>{{optionCost | currency: 'USD'}}</span>
