@@ -11,6 +11,7 @@ export interface CarColor {
 }
 
 export interface CarOptions {
+  id: number;
   configs: CarConfig[];
   towHitch: boolean;
   yoke: boolean;
