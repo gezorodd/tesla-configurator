@@ -6,7 +6,7 @@
     <option *ngFor="let carModel of carConfigs$ | async" [ngValue]="carModel">{{carModel.description}}</option>
   </select>
 </div>
-<div *ngIf="settings.config as config">
+<div class="config-spec" *ngIf="settings.config as config">
   {{config | carConfigSpec}} - Cost {{config.price | currency: 'USD'}}
 </div>
 <div *ngIf="includeTowHitch$ | async">
