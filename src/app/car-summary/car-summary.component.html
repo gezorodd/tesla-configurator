@@ -6,7 +6,7 @@
       <b>{{config.description}}</b>
       <div>{{config | carConfigSpec}}</div>
     </div>
-    <span>{{settings.config?.price | currency: 'USD'}}</span>
+    <span>{{config.price | currency: 'USD'}}</span>
   </ng-container>
   <ng-container *ngIf="settings.color as color">
     <b>{{color.description}} Color</b>
