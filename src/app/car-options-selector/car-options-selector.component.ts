@@ -3,7 +3,7 @@ import {AsyncPipe, CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CarSettingsService} from "../car-settings/car-settings.service";
 import {CarSettings} from "../car-settings/car-settings.model";
-import {map, Observable, tap} from "rxjs";
+import {map, NEVER, Observable, tap} from "rxjs";
 import {CarConfig} from "../car-catalog/car-catalog.model";
 import {CarCatalogService} from "../car-catalog/car-catalog.service";
 import {CarConfigSpecPipe} from "./car-config-spec.pipe";
@@ -26,18 +26,24 @@ import {CarConfigSpecPipe} from "./car-config-spec.pipe";
 export class CarOptionsSelectorComponent implements OnInit {
 
   readonly settings: CarSettings;
-  carConfigs$?: Observable<CarConfig[]>;
-  includeTowHitch$?: Observable<boolean>;
-  includeYoke$?: Observable<boolean>;
+  carConfigs$: Observable<CarConfig[]>;
+  includeTowHitch$: Observable<boolean>;
+  includeYoke$: Observable<boolean>;
 
   constructor(carSettingsService: CarSettingsService, private carCatalogService: CarCatalogService) {
     this.settings = carSettingsService.settings;
+    this.carConfigs$ = NEVER;
+    this.includeTowHitch$ = NEVER;
+    this.includeYoke$ = NEVER;
   }
 
   ngOnInit(): void {
-    const model = this.settings.model!;
-    const carOptions$ = this.carCatalogService.getCarOptions(model);
+    const model = this.settings.model;
+    if (!model) {
+      return;
+    }
 
+    const carOptions$ = this.carCatalogService.getCarOptions(model);
     this.carConfigs$ = carOptions$
       .pipe(map(carOptions => carOptions.configs));
     this.includeTowHitch$ = carOptions$

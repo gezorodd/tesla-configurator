@@ -19,6 +19,6 @@ export class StepSelectorComponent {
     new Step(3, 'summary', settings => settings.hasConfigSelected()),
   ];
 
-  @Input()
+  @Input({required: true})
   settings!: CarSettings;
 }

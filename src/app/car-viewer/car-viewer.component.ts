@@ -13,6 +13,6 @@ import {CarImageSrcDirective} from "./car-image-src.directive";
 })
 export class CarViewerComponent {
 
-  @Input()
+  @Input({required: true})
   settings!: CarSettings;
 }

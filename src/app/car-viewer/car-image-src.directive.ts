@@ -7,9 +7,9 @@ import {CarColor, CarModel} from "../car-catalog/car-catalog.model";
 })
 export class CarImageSrcDirective implements OnChanges {
 
-  @Input()
+  @Input({required: true})
   model!: CarModel;
-  @Input()
+  @Input({required: true})
   color!: CarColor;
 
   @HostBinding('src')

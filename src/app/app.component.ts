@@ -16,10 +16,9 @@ import {CarViewerComponent} from "./car-viewer/car-viewer.component";
 })
 export class AppComponent {
 
-  constructor(private carSettingsService: CarSettingsService) {
-  }
+  readonly settings: CarSettings;
 
-  get settings(): CarSettings {
-    return this.carSettingsService.settings;
+  constructor(carSettingsService: CarSettingsService) {
+    this.settings = carSettingsService.settings;
   }
 }

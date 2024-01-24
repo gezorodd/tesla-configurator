@@ -4,9 +4,9 @@
   <option [ngValue]="undefined">Choose...</option>
   <option *ngFor="let carModel of carModels$ | async" [ngValue]="carModel">{{carModel.description}}</option>
 </select>
-<ng-container *ngIf="settings.model">
+<ng-container *ngIf="settings.model as model">
   <label for="colorSelect">Color: </label>
   <select id="colorSelect" [(ngModel)]="settings.color">
-    <option *ngFor="let carColor of settings.model?.colors" [ngValue]="carColor">{{carColor.description}}</option>
+    <option *ngFor="let carColor of model.colors" [ngValue]="carColor">{{carColor.description}}</option>
   </select>
 </ng-container>
